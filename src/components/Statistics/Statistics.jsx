@@ -9,10 +9,10 @@ import {
   Percentage,
 } from './Statistics.styled';
 
-const Statistics = ({ stats }) => {
+const Statistics = ({ title, stats }) => {
   return (
     <StatisticsSection>
-      <Title>Upload stats</Title>
+       {title ? <Title>{title}</Title> : null}
       <StatList>
         {stats.map(stat => (
           <StatItem
@@ -29,8 +29,9 @@ const Statistics = ({ stats }) => {
 };
 
 Statistics.propTypes = {
+  title:PropTypes.string,
   stats: PropTypes.arrayOf(
-    PropTypes.exact({
+    PropTypes.shape({
       id: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       percentage: PropTypes.number.isRequired,
